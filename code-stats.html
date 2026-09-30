@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>词云煲 · 源码行数分布</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--panel2:#1c2430;--line:#2a3340;--text:#e6edf3;--muted:#9aa7b4;--blue:#4f8cff;--teal:#36c5a8;--amber:#f0a23b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5;padding:32px 20px 64px}
+.wrap{max-width:980px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:28px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:34px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card .k{color:var(--muted);font-size:12px}
+.card .v{font-size:26px;font-weight:700;margin-top:4px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:22px}
+section h2{font-size:16px;margin:0 0 18px;display:flex;align-items:center;gap:8px}
+section h2::before{content:"";width:4px;height:16px;background:var(--blue);border-radius:2px;display:inline-block}
+.row{display:grid;grid-template-columns:200px 1fr 78px;align-items:center;gap:12px;margin:9px 0}
+.row .lab{font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .lab small{color:var(--muted)}
+.bar{height:14px;background:var(--panel2);border-radius:7px;overflow:hidden}
+.bar > i{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,#4f8cff,#36c5a8)}
+.row .num{font-size:13px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.donut-wrap{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.legend{display:flex;flex-direction:column;gap:10px}
+.legend .li{display:flex;align-items:center;gap:10px;font-size:13px}
+.legend .dot{width:12px;height:12px;border-radius:3px}
+.legend .li b{font-variant-numeric:tabular-nums;margin-left:auto;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:12px}
+td.path{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--text);word-break:break-all}
+td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.mini{display:inline-block;height:8px;border-radius:4px;vertical-align:middle;margin-left:8px;background:#4f8cff}
+footer{color:var(--muted);font-size:12px;text-align:center;margin-top:30px}
+@media(max-width:640px){.cards{grid-template-columns:repeat(2,1fr)}.row{grid-template-columns:120px 1fr 64px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>词云煲（WordCloudLexicon）· 源码行数分布</h1>
+  <div class="sub">生成于 2026-09-30 · 由 tools/count-loc.ps1 自动生成 · 已排除 build / forensics / node_modules / android / docs / public / artwork 等生成与文档目录</div>
+  <div class="cards">
+    <div class="card"><div class="k">源码文件</div><div class="v">272</div></div>
+    <div class="card"><div class="k">总行数</div><div class="v">71,402</div></div>
+    <div class="card"><div class="k">main 代码</div><div class="v">60,215</div></div>
+    <div class="card"><div class="k">test 代码</div><div class="v">11,187</div></div>
+  </div>
+  <section><h2>按轨道占比</h2><div class="donut-wrap">
+    <svg width="180" height="180" viewBox="0 0 180 180"><circle cx='90' cy='90' r='70' fill='none' stroke='#1c2430' stroke-width='22'/><circle cx='90' cy='90' r='70' fill='none' stroke='#4f8cff' stroke-width='22' stroke-dasharray='274.889357189107 164.933614313464' stroke-dashoffset='0' transform='rotate(-90 90 90)'/><circle cx='90' cy='90' r='70' fill='none' stroke='#36c5a8' stroke-width='22' stroke-dasharray='124.90972390673 314.913247595841' stroke-dashoffset='-274.889357189107' transform='rotate(-90 90 90)'/><circle cx='90' cy='90' r='70' fill='none' stroke='#f0a23b' stroke-width='22' stroke-dasharray='40.023890406734 399.799081095837' stroke-dashoffset='-399.799081095837' transform='rotate(-90 90 90)'/><text x="90" y="86" text-anchor="middle" fill="#e6edf3" font-size="22" font-weight="700">71,402</text><text x="90" y="106" text-anchor="middle" fill="#9aa7b4" font-size="11">总行数</text></svg>
+    <div class="legend"><div class='li'><span class='dot' style='background:#4f8cff'></span>原生 native（Kotlin）<b>62.5%</b></div><div class='li'><span class='dot' style='background:#36c5a8'></span>Web src（TS/TSX/CSS）<b>28.4%</b></div><div class='li'><span class='dot' style='background:#f0a23b'></span>tools 脚本（mjs/py/ps1）<b>9.1%</b></div></div>
+  </div></section>
+  <section><h2>按语言</h2><div class='row'><div class='lab'>.kt <small>(156)</small></div><div class='bar'><i style='width:100%'></i></div><div class='num'>44,614</div></div><div class='row'><div class='lab'>.ts <small>(53)</small></div><div class='bar'><i style='width:27.7%'></i></div><div class='num'>12,380</div></div><div class='row'><div class='lab'>.tsx <small>(19)</small></div><div class='bar'><i style='width:13%'></i></div><div class='num'>5,810</div></div><div class='row'><div class='lab'>.mjs <small>(18)</small></div><div class='bar'><i style='width:10.2%'></i></div><div class='num'>4,549</div></div><div class='row'><div class='lab'>.css <small>(14)</small></div><div class='bar'><i style='width:4.7%'></i></div><div class='num'>2,081</div></div><div class='row'><div class='lab'>.py <small>(8)</small></div><div class='bar'><i style='width:3.5%'></i></div><div class='num'>1,560</div></div><div class='row'><div class='lab'>.ps1 <small>(4)</small></div><div class='bar'><i style='width:0.9%'></i></div><div class='num'>408</div></div></section>
+  <section><h2>按模块分布</h2><div class='row'><div class='lab' title='native/ui'>native/ui <small>(67)</small></div><div class='bar'><i style='width:100%'></i></div><div class='num'>31,121</div></div><div class='row'><div class='lab' title='tools'>tools <small>(30)</small></div><div class='bar'><i style='width:20.9%'></i></div><div class='num'>6,517</div></div><div class='row'><div class='lab' title='native/core'>native/core <small>(41)</small></div><div class='bar'><i style='width:20.5%'></i></div><div class='num'>6,380</div></div><div class='row'><div class='lab' title='native/data'>native/data <small>(32)</small></div><div class='bar'><i style='width:16.2%'></i></div><div class='num'>5,027</div></div><div class='row'><div class='lab' title='src/render'>src/render <small>(11)</small></div><div class='bar'><i style='width:14%'></i></div><div class='num'>4,359</div></div><div class='row'><div class='lab' title='src/App.tsx'>src/App.tsx <small>(1)</small></div><div class='bar'><i style='width:13.2%'></i></div><div class='num'>4,109</div></div><div class='row'><div class='lab' title='src/data'>src/data <small>(15)</small></div><div class='bar'><i style='width:12.1%'></i></div><div class='num'>3,778</div></div><div class='row'><div class='lab' title='src/core'>src/core <small>(17)</small></div><div class='bar'><i style='width:11.5%'></i></div><div class='num'>3,591</div></div><div class='row'><div class='lab' title='src/styles'>src/styles <small>(12)</small></div><div class='bar'><i style='width:6.6%'></i></div><div class='num'>2,061</div></div><div class='row'><div class='lab' title='src/components'>src/components <small>(21)</small></div><div class='bar'><i style='width:6.4%'></i></div><div class='num'>1,998</div></div><div class='row'><div class='lab' title='native/notify'>native/notify <small>(10)</small></div><div class='bar'><i style='width:3.8%'></i></div><div class='num'>1,172</div></div><div class='row'><div class='lab' title='native/render'>native/render <small>(3)</small></div><div class='bar'><i style='width:1.8%'></i></div><div class='num'>560</div></div><div class='row'><div class='lab'>其他零散 <small>(11)</small></div><div class='bar'><i style='width:2.3%'></i></div><div class='num'>729</div></div></section>
+  <section><h2>最大文件 Top 15</h2><table><thead><tr><th>#</th><th>文件</th><th style="text-align:right">行数</th></tr></thead><tbody><tr><td class='num'>1</td><td class='path'>native/app/src/main/java/com/wordcloudlexicon/nativeapp/ui/cloud/CloudScreen.kt<span class='mini' style='width:120px'></span></td><td class='num'>8,674</td></tr><tr><td class='num'>2</td><td class='path'>src/App.tsx<span class='mini' style='width:57px'></span></td><td class='num'>4,109</td></tr><tr><td class='num'>3</td><td class='path'>native/app/src/main/java/com/wordcloudlexicon/nativeapp/ui/settings/SettingsScreen.kt<span class='mini' style='width:43px'></span></td><td class='num'>3,123</td></tr><tr><td class='num'>4</td><td class='path'>native/app/src/main/java/com/wordcloudlexicon/nativeapp/ui/sheet/WordSheet.kt<span class='mini' style='width:25px'></span></td><td class='num'>1,821</td></tr><tr><td class='num'>5</td><td class='path'>native/app/src/main/java/com/wordcloudlexicon/nativeapp/ui/imports/ImportDialog.kt<span class='mini' style='width:18px'></span></td><td class='num'>1,274</td></tr><tr><td class='num'>6</td><td class='path'>native/app/src/main/java/com/wordcloudlexicon/nativeapp/ui/settings/UiSettings.kt<span class='mini' style='width:15px'></span></td><td class='num'>1,103</td></tr><tr><td class='num'>7</td><td class='path'>src/core/changelog.ts<span class='mini' style='width:15px'></span></td><td class='num'>1,070</td></tr><tr><td class='num'>8</td><td class='path'>native/app/src/main/java/com/wordcloudlexicon/nativeapp/ui/kit/Controls.kt<span class='mini' style='width:14px'></span></td><td class='num'>1,001</td></tr><tr><td class='num'>9</td><td class='path'>native/app/src/main/java/com/wordcloudlexicon/nativeapp/ui/settings/NativeChangelog.kt<span class='mini' style='width:14px'></span></td><td class='num'>977</td></tr><tr><td class='num'>10</td><td class='path'>native/app/src/main/java/com/wordcloudlexicon/nativeapp/ui/theme/Styles.kt<span class='mini' style='width:13px'></span></td><td class='num'>959</td></tr><tr><td class='num'>11</td><td class='path'>native/app/src/main/java/com/wordcloudlexicon/nativeapp/ui/kit/Panel.kt<span class='mini' style='width:12px'></span></td><td class='num'>900</td></tr><tr><td class='num'>12</td><td class='path'>src/render/ImmersiveRenderer.ts<span class='mini' style='width:12px'></span></td><td class='num'>856</td></tr><tr><td class='num'>13</td><td class='path'>src/render/immersiveLayout.ts<span class='mini' style='width:10px'></span></td><td class='num'>743</td></tr><tr><td class='num'>14</td><td class='path'>src/render/immersive.test.ts<span class='mini' style='width:10px'></span></td><td class='num'>737</td></tr><tr><td class='num'>15</td><td class='path'>native/app/src/main/java/com/wordcloudlexicon/nativeapp/ui/settings/TutorialPage.kt<span class='mini' style='width:10px'></span></td><td class='num'>713</td></tr></tbody></table></section>
+  <footer>纯静态报告，无外部依赖 · 重新统计请运行 powershell -File tools/count-loc.ps1</footer>
+</div>
+</body>
+</html>
